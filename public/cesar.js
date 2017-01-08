@@ -24,6 +24,7 @@ function postText() {
           solution.classList.remove('unsolved');
         };
       } else if (xhr.readyState === XMLHttpRequest.LOADING) {
+        setInterval(console.log('LOADING'), 1000);
         loadWindow.style.visibility = 'visible';
       };
     };
@@ -51,6 +52,7 @@ function getAll() {
         prev.classList.remove('unsolved');
       };
     } else if (xhr.readyState === XMLHttpRequest.LOADING) {
+      setInterval(console.log('LOADING'), 500);
       loadWindow.style.visibility = 'visible';
     };
   };
