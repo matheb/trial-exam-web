@@ -6,6 +6,8 @@ var sendButton = document.querySelector('button');
 var prevList =  document.querySelector('.prev_list');
 var prev = document.querySelector('.prev');
 
+var loadWindow = document.querySelector('.loading');
+
 function postText() {
   var encodedText =  document.querySelector('textarea').value;
   var shift =  document.querySelector('input').value;
@@ -16,11 +18,14 @@ function postText() {
     xhr.send(JSON.stringify({'shift': shift, 'text': encodedText}));
     xhr.onreadystatechange = function (){
       if (xhr.readyState === XMLHttpRequest.DONE){
+        loadWindow.style.visibility = 'hidden';
         decoded.textContent = JSON.parse(xhr.response)['text'];
         if (solution.classList.contains('unsolved')) {
           solution.classList.remove('unsolved');
         };
-      }
+      } else if (xhr.readyState === XMLHttpRequest.LOADING) {
+        loadWindow.style.visibility = 'visible';
+      };
     };
   } else {
     alert('Please add an iput!');
@@ -35,6 +40,7 @@ function getAll() {
   xhr.send();
   xhr.onreadystatechange = function (){
     if (xhr.readyState === XMLHttpRequest.DONE){
+      loadWindow.style.visibility = 'hidden';
       var all = JSON.parse(xhr.response).all;
       for (var i = 0; i < all.length; i++){
         var newDecoded = document.createElement('li');
@@ -44,6 +50,8 @@ function getAll() {
       if (prev.classList.contains('unsolved')) {
         prev.classList.remove('unsolved');
       };
+    } else if (xhr.readyState === XMLHttpRequest.LOADING) {
+      loadWindow.style.visibility = 'visible';
     };
   };
 };
