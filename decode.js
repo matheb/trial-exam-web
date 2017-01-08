@@ -1,5 +1,3 @@
-// encodedtext = "paradicsom";
-// shift = -1;
 
 function decode(encodedtext, shift) {
   var decodedtext = "";
@@ -10,11 +8,11 @@ function decode(encodedtext, shift) {
     } else if(decodedchar >= 65 && decodedchar <= 90) {
       decodedtext += String.fromCharCode((decodedchar - 65 - shift + 26) % 26 + 65);
     } else {
-      decodedtext += String.fromCharCode(decodedchar);
+      throw new Error('Invalid char');
     };
   };
   return decodedtext;
 };
-// console.log(decode(encodedtext, shift));
+
 
 module.exports = decode;

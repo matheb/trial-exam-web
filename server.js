@@ -36,7 +36,7 @@ decoder.get('/decode/all', function getid(req, resp) {
     for (var i = 0; i < rows.length; i++){
       all_texts.push(rows[i].decoded);
     }
-    resp.send({all: all_texts});
+    resp.status(200).send({all: all_texts});
   });
 });
 
@@ -44,17 +44,13 @@ decoder.post('/decode', function add(req, resp) {
   if (req.body.text !== '' && req.body.shift !== ''){
     if ( req.body.shift > -25 && req.body.shift < 25 ) {
       con.query('INSERT INTO texts SET ?', [{decoded: decode(req.body.text, req.body.shift)}], function(err,res){
-        console.log(decode(req.body.text, req.body.shift));
-        //resp.sendsStatus(200);
-        console.log({status: 'ok', text: decode(req.body.text, req.body.shift)});
-        resp.send({status: 'ok', text: decode(req.body.text, req.body.shift)});
+        resp.status(200).send({status: 'ok', text: decode(req.body.text, req.body.shift)});
       });
     } else {
-      resp.send({status: 'error', text: 'Shift is out of bound'});
+      resp.status(400).send({status: 'error', text: 'Shift is out of bound'});
     };
   } else {
-    //resp.sendsStatus(400);
-    resp.send({status: 'error', text: 'Please add a text'});
+    resp.status(400).send({status: 'error', text: 'Please add an input'});
   }
 });
 

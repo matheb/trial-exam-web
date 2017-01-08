@@ -9,19 +9,21 @@ var prev = document.querySelector('.prev');
 function postText() {
   var encodedText =  document.querySelector('textarea').value;
   var shift =  document.querySelector('input').value;
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', "http://localhost:3000/decode", true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(JSON.stringify({'shift': shift, 'text': encodedText}));
-  xhr.onreadystatechange = function (){
-    if (xhr.readyState === XMLHttpRequest.DONE){
-      console.log(xhr.response)
-      console.log(JSON.parse(xhr.response)['text']);
-      decoded.textContent = JSON.parse(xhr.response)['text'];
-      if (solution.classList.contains('unsolved')) {
-        solution.classList.remove('unsolved');
-      };
+  if ( encodedText != '' && shift !=''){
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "http://localhost:3000/decode", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({'shift': shift, 'text': encodedText}));
+    xhr.onreadystatechange = function (){
+      if (xhr.readyState === XMLHttpRequest.DONE){
+        decoded.textContent = JSON.parse(xhr.response)['text'];
+        if (solution.classList.contains('unsolved')) {
+          solution.classList.remove('unsolved');
+        };
+      }
     };
+  } else {
+    alert('Please add an iput!');
   };
 };
 
@@ -33,7 +35,6 @@ function getAll() {
   xhr.send();
   xhr.onreadystatechange = function (){
     if (xhr.readyState === XMLHttpRequest.DONE){
-      console.log(JSON.parse(xhr.response).all)
       var all = JSON.parse(xhr.response).all;
       for (var i = 0; i < all.length; i++){
         var newDecoded = document.createElement('li');
