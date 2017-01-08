@@ -3,7 +3,7 @@ var mysql = require("mysql");
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var decode_module = require('./decode');
+var decode = require('./decode.js');
 
 var decoder = express();
 
@@ -43,15 +43,19 @@ decoder.get('/decode/all', function getid(req, resp) {
 decoder.post('/decode', function add(req, resp) {
   if (req.body.text !== '' && req.body.shift !== ''){
     if ( req.body.shift > -25 && req.body.shift < 25 ) {
-      con.query('INSERT INTO texts SET ?', [{decoded: decode_module.decode(req.body.text, req.body.shift)}], function(err,res){
-        resp.sendsStatus(200);
-        resp.send({status: 'ok', text: decode_module.decode(req.body.text, req.body.shift)});
+      con.query('INSERT INTO texts SET ?', [{decoded: decode(req.body.text, req.body.shift)}], function(err,res){
+        console.log(decode(req.body.text, req.body.shift));
+        //resp.sendsStatus(200);
+        console.log({status: 'ok', text: decode(req.body.text, req.body.shift)});
+        resp.send({status: 'ok', text: decode(req.body.text, req.body.shift)});
       });
     } else {
-      resp.sendsStatus(400);
       resp.send({status: 'error', text: 'Shift is out of bound'});
     };
-  };
+  } else {
+    //resp.sendsStatus(400);
+    resp.send({status: 'error', text: 'Please add a text'});
+  }
 });
 
 decoder.listen(3000);

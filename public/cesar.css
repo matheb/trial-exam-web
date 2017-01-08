@@ -44,7 +44,6 @@ textarea, .solved_text {
   display: flex;
   width: 60%;
   height: 100%;
-  text-align: left;
   vertical-align: top;
   font-size: 18px;
   padding: 5px;
@@ -76,7 +75,11 @@ button {
 }
 
 .solved_text {
-  background-color: white;
+  background-color: none;
+  font-family: Arial;
+  color: red;
+  font-style: italic;
+  text-align: center;
 }
 
 ul {

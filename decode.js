@@ -1,7 +1,7 @@
 // encodedtext = "paradicsom";
 // shift = -1;
 
-var decode = function(encodedtext, shift) {
+function decode(encodedtext, shift) {
   var decodedtext = "";
   for(var i = 0; i < encodedtext.length; i++) {
     var decodedchar = encodedtext.charCodeAt(i);
@@ -16,3 +16,5 @@ var decode = function(encodedtext, shift) {
   return decodedtext;
 };
 // console.log(decode(encodedtext, shift));
+
+module.exports = decode;
