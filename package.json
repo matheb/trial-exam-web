@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/matheb/trial-exam-web/issues"
   },
-  "homepage": "https://github.com/matheb/trial-exam-web#readme"
+  "homepage": "https://github.com/matheb/trial-exam-web#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "mysql": "^2.12.0"
+  }
 }
