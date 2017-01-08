@@ -1,0 +1,19 @@
+{
+  "name": "trial-exam-web",
+  "version": "1.0.0",
+  "description": "Trial exam",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheb/trial-exam-web.git"
+  },
+  "author": "matheb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matheb/trial-exam-web/issues"
+  },
+  "homepage": "https://github.com/matheb/trial-exam-web#readme"
+}
