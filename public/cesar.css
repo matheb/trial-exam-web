@@ -6,16 +6,15 @@
 }
 
 body {
-  height: 650px;
+  margin-top: 100px;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
 }
 
-.dialog, .solution {
+.dialog, .solution, .prev {
   width: 600px;
-  height: 400px;
   display: flex;
   flex-flow: column;
   vertical-align: middle;
@@ -52,9 +51,15 @@ textarea, .solved_text {
   margin-bottom: 20px;
 }
 
+input[type="number"]{
+  height: 20px;
+  width: 50px;
+  margin-bottom: 10px;
+}
+
 button {
   width: 150px;
-  height: 60px;
+  height: 30px;
   background-color: #f2b3a7;
   color: white;
   font-size: 24px;
@@ -72,4 +77,23 @@ button {
 
 .solved_text {
   background-color: white;
+}
+
+ul {
+  margin-bottom: 30px;
+}
+
+li::before {
+  content: " ";
+  visibility: hidden;
+}
+
+li {
+  list-style-type: none;
+  background-color: white;
+  height: 20px;
+  color: #1b8964;
+  font-size: 16px;
+  margin-bottom: 2px;
+  vertical-align: middle;
 }
